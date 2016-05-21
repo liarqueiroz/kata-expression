@@ -1,0 +1,26 @@
+{
+  "name": "kata",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "tape test/*.js | tap-spec",
+    "watch:test": "nodemon -q -x 'tape test/*.js | tap-notify | tap-spec'"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andremw/kata.git"
+  },
+  "author": "andremw",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andremw/kata/issues"
+  },
+  "homepage": "https://github.com/andremw/kata#readme",
+  "devDependencies": {
+    "nodemon": "^1.9.2",
+    "tap-notify": "^1.0.0",
+    "tap-spec": "^4.1.1",
+    "tape": "^4.5.1"
+  }
+}
