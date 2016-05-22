@@ -62,7 +62,10 @@ test('Expression with two or more operations and parenthesis', (t) => {
     t.equal(expression.resolveInfix('((10 + 18) / 7) - (5 - 1)'), 0, '((10 + 18) / 7) - (5 - 1) = 0');
     t.equal(expression.resolveInfix('((100 / 4) / 5) - (2 * 1)'), 3, '((100 / 4) / 5) - (2 * 1) = 3');
     t.equal(expression.resolveInfix('(1+4*(15-9))'), 25, '(1+4*(15-9)) = 25');
+    t.equal(expression.resolveInfix('(1+4*(15-9+3))'), 37, '(1+4*(15-9+3)) = 37');
     t.equal(expression.resolveInfix('((1+4*(15-9))*(7-5)+2)/13'), 4, '((1+4*(15-9))*(7-5)+2)/13 = 4');
+    t.equal(expression.resolveInfix('((1+3000/(18-15)+9)*(7-5))/202'), 10, '((1+3000/(18-15)+9)*(7-5))/202 = 10');
+    t.equal(expression.resolveInfix('((1+3000/(18-15)+9-10)*(7-5))/200'), 10, '((1+3000/(18-15)+9-10)*(7-5))/200 = 10');
     t.equal(expression.resolveInfix('(u*7+2)/13'), undefined, '(u*7+2)/13 = undefined');
     t.end();
 });

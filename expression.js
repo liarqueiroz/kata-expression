@@ -5,19 +5,24 @@
 //[(]*[0-9]+\s*[+-/*]\s*[0-9]+[)]*
 
 function resolveInfix(expression) {
-    console.log(expression);
     if (!isNaN(+expression)) {
         return +expression;
     }
     
-    let arraySimpleExpression = expression.match(/[(][0-9]+\s*[+-/*]\s*[0-9]+[)]/g) || expression.match(/[[0-9]+\s*[/*]\s*[0-9]+/g) || expression.match(/[0-9]+\s*[+-]\s*[0-9]+/g),
-        simpleExpression,
-        simpleExpressionResult;
+    let arraySubExpression = expression.match(/[(][0-9]+(\s*[+-/*]\s*[0-9]+)+[)]/g) || expression.match(/[[0-9]+\s*[/*]\s*[0-9]+/g) || expression.match(/[0-9]+\s*[+-]\s*[0-9]+/g),
+        subExpression,
+        subExpressionResult;
         
-   if (arraySimpleExpression && arraySimpleExpression.length > 0) {
-        simpleExpression = arraySimpleExpression[0];
-        simpleExpressionResult = resolveSimpleInfix(simpleExpression.replace(/[()]/gi, ''));
-        return resolveInfix(expression.replace(simpleExpression, simpleExpressionResult));
+   if (arraySubExpression && arraySubExpression.length > 0) {
+        subExpression = arraySubExpression[0];
+        
+        if (subExpression.match(/^[(]*[0-9]+\s*[+-/*]\s*[0-9]+[)]*$/g)){
+            subExpressionResult = resolveSimpleInfix(subExpression.replace(/[()]/gi, ''));
+        }
+        else {
+            subExpressionResult = resolveInfix(subExpression.match(/[0-9]+(\s*[+-/*]\s*[0-9]+)+/g)[0]);
+        }
+        return resolveInfix(expression.replace(subExpression, subExpressionResult));
     }
 }
 
